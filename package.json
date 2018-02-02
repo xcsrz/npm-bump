@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "newversion": "version=$(jq '.version' < package.json); version=${version%\\\"}; version=${version#\\\"}; IFS='-'; read -ra PARTS <<< \"$version\"; if [[ ${PARTS[1]} != \"alpha\" ]]; then echo ${PARTS[1]}; echo \"$version is not on an alpha tag, bailing\"; exit 1; fi; IFS=' '; alpha=${PARTS[*]: -1}; alpha=$((alpha+1)); VERSION=\"${PARTS[0]}-alpha-${alpha}\"",
-    "test": "echo \" result is $(npm run newversion\"",
     "bump": "version=$(jq '.version' < package.json); version=${version%\\\"}; version=${version#\\\"}; IFS='-'; read -ra PARTS <<< \"$version\"; if [[ ${PARTS[1]} != \"alpha\" ]]; then echo ${PARTS[1]}; echo \"$version is not on an alpha tag, bailing\"; exit 1; fi; IFS=' '; alpha=${PARTS[*]: -1}; alpha=$((alpha+1)); VERSION=\"${PARTS[0]}-alpha-${alpha}\"; npm version -m \"Bump react-component to version %s\" $VERSION",
     "postbump": "echo \"version is now:\" && npm version"
   },
